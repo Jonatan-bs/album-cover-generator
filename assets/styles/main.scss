@@ -1,0 +1,46 @@
+html {
+	/* stylelint-disable-next-line declaration-property-unit-allowed-list */
+	font-size: 62.5%;
+}
+
+
+// PAGE TRANSITIONS
+.page-enter-active > *,
+.page-leave-active > *,
+.page-leave-active,
+.page-enter-active {
+	transition: all 0.6s;
+}
+.page-enter-from > * {
+	opacity: 0;
+	filter: blur(1rem);
+}
+
+.page-leave-to > * {
+	opacity: 0;
+	filter: blur(1rem);
+}
+// ORGANISM MODAL TRANSITION
+
+.modal-leave-active,
+.modal-enter-active {
+	transition: all 0.6s;
+	& > .organism-modal__content {
+		transition: all 0.6s;
+	}
+}
+.modal-enter-from {
+	opacity: 0;
+	& > .organism-modal__content {
+		filter: blur(1rem);
+		transform: translateY(2rem);
+	}
+}
+
+.modal-leave-to {
+	opacity: 0;
+	& > .organism-modal__content {
+		filter: blur(1rem);
+		transform: translateY(2rem);
+	}
+}

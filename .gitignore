@@ -1,0 +1,11 @@
+.DS_store
+node_modules
+*.log*
+.nuxt
+.nitro
+.cache
+.output
+.env
+dist
+/public/robots.txt
+.vercel
