@@ -11,6 +11,7 @@ export default defineNuxtConfig({
 		public: {
 			ROBOTS: process.env.ROBOTS,
 			BASE_URL: process.env.BASE_URL,
+			CLOUDINARY_WEBSITE: process.env.CLOUDINARY_WEBSITE,
 		},
 	},
 	css: ["~/assets/styles/main.scss"],
@@ -20,7 +21,9 @@ export default defineNuxtConfig({
 		{ path: "~/assets/svg", extensions: ["vue"], prefix: "svg" },
 	],
 	image: {
-		contentful: {},
+		cloudinary: {
+			baseURL: process.env.CLOUDINARY_WEBSITE,
+		},
 		screens: {
 			sm: 640,
 			md: 768,
