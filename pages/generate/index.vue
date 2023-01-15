@@ -1,0 +1,52 @@
+<script src="./index.page.ts" lang="ts"></script>
+<template>
+	<div class="container">
+		<OrganismTheHeader />
+		<section class="pt-2xl mb-4xl">
+			<p class="text-center text-md text-blue-cornflower mb-md">Covers Left: 9</p>
+			<form class="flex mb-md" @submit.prevent="generateImage">
+				<input
+					v-model="prompt"
+					type="text"
+					class="rounded-l-sm w-full p-3xs text-base"
+					placeholder="Example: Death Valley art"
+				/>
+				<button
+					class="bg-yellow-energy-yellow text-base text-white rounded-r-sm px-lg py-2xs min-w-[30rem] hover:bg-yellow-brick-road"
+				>
+					Generate
+				</button>
+			</form>
+
+			<div class="bg-blue-whale py-sm px-lg flex justify-center">
+				<div
+					v-if="!generatedImage && !isGenerating"
+					class="aspect-1 w-full bg-blue-galaxy max-w-[50rem]"
+				></div>
+				<div
+					v-else-if="isGenerating"
+					class="aspect-1 w-full bg-blue-thoughts max-w-[50rem]"
+				></div>
+				<AtomCoverThumb
+					v-else-if="generatedImage"
+					provider=""
+					class="max-w-[50rem] w-full"
+					:src="generatedImage"
+					alt="AI generated album cover"
+				/>
+			</div>
+		</section>
+		<section class="mb-4xl">
+			<AtomTextHeading tag="h2" class="mb-xs">My Covers</AtomTextHeading>
+			<div class="main-grid">
+				<AtomCoverThumb
+					class="col-span-4"
+					src="cover-example-1.png"
+					alt="Example of AI generated album cover"
+				/>
+				<div class="aspect-1 w-full bg-blue-galaxy col-span-4"></div>
+				<div class="aspect-1 w-full bg-blue-galaxy col-span-4"></div>
+			</div>
+		</section>
+	</div>
+</template>

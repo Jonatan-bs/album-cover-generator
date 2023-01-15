@@ -8,6 +8,8 @@ export default defineNuxtConfig({
 		transpile: ["gsap"],
 	},
 	runtimeConfig: {
+		SD_API: process.env.SD_API,
+
 		public: {
 			ROBOTS: process.env.ROBOTS,
 			BASE_URL: process.env.BASE_URL,

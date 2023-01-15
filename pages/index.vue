@@ -4,7 +4,9 @@
 		<OrganismTheHeader />
 		<section class="pt-2xl mb-4xl">
 			<div class="flex justify-center mb-2xl">
-				<AtomButtonBase>Create cover</AtomButtonBase>
+				<NuxtLink to="/generate">
+					<AtomButtonBase>Create cover</AtomButtonBase>
+				</NuxtLink>
 			</div>
 			<div class="flex items-center flex-col">
 				<div>
@@ -27,7 +29,7 @@
 			</div>
 		</section>
 		<section class="mb-4xl">
-			<AtomTextHeading tag="h2">Examples</AtomTextHeading>
+			<AtomTextHeading tag="h2" class="mb-xs">Examples</AtomTextHeading>
 			<div class="main-grid">
 				<AtomCoverThumb
 					class="col-span-4"

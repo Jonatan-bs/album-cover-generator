@@ -29,6 +29,7 @@
 	},
 	"dependencies": {
 		"@vueuse/integrations": "^9.9.0",
+		"axios": "^1.2.2",
 		"focus-trap": "^7.2.0",
 		"gsap": "^3.11.3",
 		"tiny-emitter": "^2.1.0"

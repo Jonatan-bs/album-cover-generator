@@ -16,10 +16,13 @@
 				"
 			>
 				<ul class="container pt-lg">
-					<NuxtLink @click="toggleMenu" :tabindex="menuIsActive ? '0' : '-1'" to="/"
+					<NuxtLink to="/" @click="toggleMenu" :tabindex="menuIsActive ? '0' : '-1'"
 						><li class="text-white text-lg mb-3xs">Frontpage</li></NuxtLink
 					>
-					<NuxtLink @click="toggleMenu" :tabindex="menuIsActive ? '0' : '-1'" to="#"
+					<NuxtLink
+						to="/generate"
+						@click="toggleMenu"
+						:tabindex="menuIsActive ? '0' : '-1'"
 						><li class="text-yellow-energy-yellow text-lg mb-3xs">
 							Create Cover
 						</li></NuxtLink
@@ -42,9 +45,13 @@
 				</ul>
 			</nav>
 		</div>
-		<h1 class="text-center text-white text-xl font-bold leading-none">Album Cover Generator</h1>
-		<p class="text-center text-white text-md italic font-light">
-			Use AI to generate your next album or single cover
-		</p>
+		<NuxtLink to="/">
+			<h1 class="text-center text-white text-xl font-bold leading-none">
+				Album Cover Generator
+			</h1>
+			<p class="text-center text-white text-md italic font-light">
+				Use AI to generate your next album or single cover
+			</p>
+		</NuxtLink>
 	</header>
 </template>
