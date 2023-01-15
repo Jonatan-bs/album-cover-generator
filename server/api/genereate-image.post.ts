@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
 			negative_prompt: "",
 			width: "512",
 			height: "512",
-			samples: "1",
+			samples: "4",
 			num_inference_steps: "30",
 			seed: null,
 			guidance_scale: 7.5,
@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
 			response.data.output.length
 		) {
 			return {
-				data: response.data.output[0] as string,
+				data: response.data.output as string[],
 				success: true,
 				error: null,
 			};

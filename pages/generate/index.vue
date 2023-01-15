@@ -18,22 +18,22 @@
 				</button>
 			</form>
 
-			<div class="bg-blue-whale py-sm px-lg flex justify-center">
-				<div
-					v-if="!generatedImage && !isGenerating"
-					class="aspect-1 w-full bg-blue-galaxy max-w-[50rem]"
-				></div>
-				<div
-					v-else-if="isGenerating"
-					class="aspect-1 w-full bg-blue-thoughts max-w-[50rem]"
-				></div>
-				<AtomCoverThumb
-					v-else-if="generatedImage"
-					provider=""
-					class="max-w-[50rem] w-full"
-					:src="generatedImage"
-					alt="AI generated album cover"
-				/>
+			<div
+				v-if="generatedImages.length || isGenerating"
+				class="bg-blue-whale py-sm px-lg flex justify-center"
+			>
+				<div class="aspect-1 w-full bg-blue-thoughts max-w-[90rem]">
+					<div v-if="generatedImages.length" class="flex flex-wrap">
+						<AtomCoverThumb
+							v-for="image in generatedImages"
+							:key="image"
+							provider=""
+							class="w-1/2"
+							:src="image"
+							alt="AI generated album cover"
+						/>
+					</div>
+				</div>
 			</div>
 		</section>
 		<section class="mb-4xl">
