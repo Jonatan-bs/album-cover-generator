@@ -1,7 +1,7 @@
 <script src="./index.page.ts" lang="ts" />
 <template>
 	<div class="container">
-		<OrganismHeader />
+		<OrganismTheHeader />
 		<section class="pt-2xl mb-4xl">
 			<div class="flex justify-center mb-2xl">
 				<AtomButtonBase>Create cover</AtomButtonBase>
