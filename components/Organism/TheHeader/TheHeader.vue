@@ -39,7 +39,20 @@
 					<NuxtLink @click="toggleMenu" :tabindex="menuIsActive ? '0' : '-1'" to="#"
 						><li class="text-white text-lg mb-3xs">Contact</li></NuxtLink
 					>
-					<NuxtLink @click="toggleMenu" :tabindex="menuIsActive ? '0' : '-1'" to="#"
+
+					<button
+						v-if="!isAuthenticated"
+						@click="login"
+						:tabindex="menuIsActive ? '0' : '-1'"
+						to="#"
+					>
+						<li class="text-white text-lg mb-3xs">Log In</li>
+					</button>
+					<NuxtLink
+						v-if="isAuthenticated"
+						@click="logout"
+						:tabindex="menuIsActive ? '0' : '-1'"
+						to="#"
 						><li class="text-white text-lg mb-3xs">Log Out</li></NuxtLink
 					>
 				</ul>

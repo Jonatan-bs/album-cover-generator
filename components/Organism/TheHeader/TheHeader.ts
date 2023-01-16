@@ -5,6 +5,7 @@ export default defineComponent({
 	props: {},
 	setup() {
 		const menuIsActive = ref(false);
+		const { isAuthenticated, login, logout } = useAuth();
 		const refMenu = ref<HTMLElement>();
 		const { activate, deactivate, hasFocus } = useFocusTrap(refMenu);
 
@@ -19,6 +20,6 @@ export default defineComponent({
 			}
 		};
 
-		return { menuIsActive, toggleMenu, hasFocus, refMenu };
+		return { menuIsActive, toggleMenu, hasFocus, refMenu, isAuthenticated, login, logout };
 	},
 });
