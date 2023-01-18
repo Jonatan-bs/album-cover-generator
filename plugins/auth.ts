@@ -11,4 +11,24 @@ export default defineNuxtPlugin((nuxtApp) => {
 	if (process.client) {
 		nuxtApp.vueApp.use(auth0);
 	}
+
+	addRouteMiddleware(
+		"auth",
+		async (to, _from) => {
+			if (process.client && to.path === "/profile") {
+				if (process.client) {
+					await auth0.checkSession();
+					if (!auth0.isAuthenticated.value) {
+						auth0.loginWithRedirect({
+							appState: {
+								target: to.path,
+							},
+						});
+						return false;
+					}
+				}
+			}
+		},
+		{ global: true }
+	);
 });

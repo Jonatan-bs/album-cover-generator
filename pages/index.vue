@@ -3,28 +3,31 @@
 	<div class="container">
 		<OrganismTheHeader />
 		<section class="pt-2xl mb-4xl">
-			<div class="flex justify-center mb-2xl">
-				<NuxtLink to="/generate">
-					<AtomButtonBase>Create cover</AtomButtonBase>
-				</NuxtLink>
+			<div class="flex justify-center">
+				<div class="max-w-[120rem] w-full">
+					<OrganismGenerator />
+				</div>
 			</div>
 			<div class="flex items-center flex-col">
-				<div>
-					<h2 class="text-white italic text-md font-light">
-						First 10 album covers are free
+				<div class="flex flex-col items-center">
+					<SvgArrowUp class="text-yellow-energy-yellow w-[10rem] mb-sm" />
+					<h2 class="text-white italic text-md font-light mb-md">
+						Write what you want on your album cover <br />
+						and click generate
 					</h2>
-					<p
-						v-for="text in [
-							`There’s no hidden fees or bamboozles.`,
-							`We won’t sent you any annoying emails.`,
-							`if something doesn’t work, contact us and we’ll figure it out.`,
-							`You get 10 free covers and can pay 8$ for 50 more`,
-						]"
-						:key="text"
-						class="text-blue-cornflower italic text-sm"
-					>
-						* {{ text }}
-					</p>
+					<div>
+						<p
+							v-for="text in [
+								`Use words like 'painting' or 'picasso', to generate cover in a specific style`,
+								`Add objects like 'Skull' or 'bird'`,
+								`The generated images are unique and you can use them as you like`,
+							]"
+							:key="text"
+							class="text-blue-cornflower italic text-sm"
+						>
+							* {{ text }}
+						</p>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -46,22 +49,6 @@
 					src="cover-example-3.png"
 					alt="Example of AI generated album cover"
 				/>
-			</div>
-		</section>
-		<section class="main-grid">
-			<div
-				v-for="(text, index) in [
-					'Login or create user',
-					'Write what you want on your album cover',
-					'Click generate and wait a couple minutes while ai generates your cover',
-				]"
-				:key="index"
-				class="col-span-4 border border-white rounded-sm aspect-5/3 p-xs"
-			>
-				<div class="flex gap-xs">
-					<p class="text-white font-bold text-xl leading-none">{{ index }}</p>
-					<p class="text-white text-base">{{ text }}</p>
-				</div>
 			</div>
 		</section>
 	</div>

@@ -1,4 +1,4 @@
 export default defineComponent({
-	name: "HomePage",
-	setup: () => {},
+	name: "Generator",
+	props: {},
 });
