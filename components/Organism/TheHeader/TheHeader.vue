@@ -58,13 +58,17 @@
 				</ul>
 			</nav>
 		</div>
-		<NuxtLink to="/">
-			<h1 class="text-center text-white text-xl font-bold leading-none">
-				Album Cover Generator
-			</h1>
-			<p class="text-center text-white text-md italic font-light">
-				Use AI to generate your next album or single cover
-			</p>
-		</NuxtLink>
+		<div class="flex justify-center">
+			<NuxtLink to="/">
+				<div class="inline-block">
+					<h1 class="text-center text-white text-xl font-bold leading-none">
+						Album Cover Generator
+					</h1>
+					<p class="text-center text-white text-md italic font-light">
+						Use AI to generate your next album or single cover
+					</p>
+				</div>
+			</NuxtLink>
+		</div>
 	</header>
 </template>

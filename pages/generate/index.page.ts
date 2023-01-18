@@ -2,6 +2,7 @@ export default defineComponent({
 	name: "GeneratePage",
 	setup: () => {
 		const { SD_GenerateImage } = useStabelDiffusion();
+		const { isAuthenticated, login } = useAuth();
 		const generatedImages = ref<string[]>([]);
 		const isGenerating = ref(false);
 		const generateImage = async () => {
@@ -16,6 +17,6 @@ export default defineComponent({
 			isGenerating.value = false;
 		};
 		const prompt = ref("");
-		return { prompt, generateImage, generatedImages, isGenerating };
+		return { prompt, generateImage, generatedImages, isGenerating, isAuthenticated, login };
 	},
 });
