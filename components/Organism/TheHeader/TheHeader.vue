@@ -3,12 +3,12 @@
 	<header class="pt-md">
 		<div ref="refMenu" class="relative">
 			<MoleculeBurgerMenu
-				class="absolute right-[0] top-[0] z-10"
+				class="absolute right-[0] top-[0] z-50"
 				:is-active="menuIsActive"
 				@click="toggleMenu"
 			/>
 			<nav
-				class="w-screen h-screen bg-blue-light-house fixed top-[0] transition-[left,opacity] duration-300"
+				class="w-screen h-screen bg-blue-light-house fixed top-[0] transition-[left,opacity] duration-300 z-40"
 				:class="
 					menuIsActive
 						? 'left-[0] opacity-100'
@@ -16,35 +16,51 @@
 				"
 			>
 				<ul class="container pt-lg">
-					<NuxtLink to="/" @click="toggleMenu" :tabindex="menuIsActive ? '0' : '-1'"
-						><li class="text-white text-lg mb-3xs">Home</li></NuxtLink
-					>
-					<NuxtLink @click="toggleMenu" :tabindex="menuIsActive ? '0' : '-1'" to="#"
-						><li class="text-white text-lg mb-3xs">Profile</li></NuxtLink
-					>
-					<NuxtLink @click="toggleMenu" :tabindex="menuIsActive ? '0' : '-1'" to="#"
-						><li class="text-white text-lg mb-3xs">Privacy policy</li></NuxtLink
-					>
-					<NuxtLink @click="toggleMenu" :tabindex="menuIsActive ? '0' : '-1'" to="#"
-						><li class="text-white text-lg mb-3xs">Contact</li></NuxtLink
-					>
-					<hr class="text-blue-galaxy my-md" />
+					<li class="text-white text-lg mb-3xs">
+						<NuxtLink to="/" @click="toggleMenu" :tabindex="menuIsActive ? '0' : '-1'"
+							>Home</NuxtLink
+						>
+					</li>
+					<li class="text-white text-lg mb-3xs">
+						<NuxtLink
+							v-if="isAuthenticated"
+							@click="toggleMenu"
+							:tabindex="menuIsActive ? '0' : '-1'"
+							to="#"
+							>Profile</NuxtLink
+						>
+					</li>
 
-					<button
-						v-if="!isAuthenticated"
-						@click="login"
-						:tabindex="menuIsActive ? '0' : '-1'"
-						to="#"
-					>
-						<li class="text-white text-lg mb-3xs">Log In</li>
-					</button>
-					<NuxtLink
-						v-if="isAuthenticated"
-						@click="logout"
-						:tabindex="menuIsActive ? '0' : '-1'"
-						to="#"
-						><li class="text-white text-lg mb-3xs">Log Out</li></NuxtLink
-					>
+					<li class="text-white text-lg mb-3xs">
+						<button
+							v-if="!isAuthenticated"
+							@click="login"
+							:tabindex="menuIsActive ? '0' : '-1'"
+							to="#"
+						>
+							Log In
+						</button>
+					</li>
+					<li class="text-white text-lg mb-3xs">
+						<NuxtLink
+							v-if="isAuthenticated"
+							@click="logout"
+							:tabindex="menuIsActive ? '0' : '-1'"
+							to="#"
+							>Log Out</NuxtLink
+						>
+					</li>
+					<hr class="text-blue-galaxy my-md" />
+					<li class="text-white text-lg mb-3xs">
+						<NuxtLink @click="toggleMenu" :tabindex="menuIsActive ? '0' : '-1'" to="#"
+							>Privacy policy</NuxtLink
+						>
+					</li>
+					<li class="text-white text-lg mb-3xs">
+						<NuxtLink @click="toggleMenu" :tabindex="menuIsActive ? '0' : '-1'" to="#"
+							>Contact</NuxtLink
+						>
+					</li>
 				</ul>
 			</nav>
 		</div>

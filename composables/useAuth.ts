@@ -1,7 +1,9 @@
 import { useAuth0 } from "@auth0/auth0-vue";
+import { useStorage } from "@vueuse/core";
 export const useAuth = () => {
 	// Composition API
 	const auth0 = process.client ? useAuth0() : undefined;
+	const { generatedImages } = useGeneratedImages();
 
 	const login = () => {
 		auth0?.checkSession();
@@ -16,6 +18,7 @@ export const useAuth = () => {
 
 	const logout = () => {
 		navigateTo("/");
+		generatedImages.value = [];
 		auth0?.logout();
 	};
 
@@ -24,5 +27,6 @@ export const useAuth = () => {
 		login,
 		isAuthenticated: auth0?.isAuthenticated,
 		user: auth0?.user,
+		authIsLoading: auth0?.isLoading,
 	};
 };

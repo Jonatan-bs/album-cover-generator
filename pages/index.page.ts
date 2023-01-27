@@ -1,4 +1,7 @@
 export default defineComponent({
 	name: "HomePage",
-	setup: () => {},
+	setup: () => {
+		const { isAuthenticated } = useAuth();
+		return { isAuthenticated };
+	},
 });

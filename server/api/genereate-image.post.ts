@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
 			return {
 				data: null,
 				success: false,
-				error: null,
+				error: response,
 			};
 		}
 	} catch (error) {
