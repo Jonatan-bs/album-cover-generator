@@ -1,4 +1,5 @@
 import { useToast } from "vue-toastification";
+import { StyleImage } from "~~/types/components/StyleSelect";
 
 export default defineComponent({
 	name: "Generator",
@@ -22,9 +23,45 @@ export default defineComponent({
 			}
 			isGenerating.value = false;
 		};
+		const styles: StyleImage[] = [
+			{
+				src: "cover-example-3.png",
+				type: "some style",
+				url: "",
+			},
+			{
+				src: "cover-example-3.png",
+				type: "some style",
+				url: "",
+			},
+			{
+				src: "cover-example-3.png",
+				type: "some style",
+				url: "",
+			},
+			{
+				src: "cover-example-3.png",
+				type: "some style",
+				url: "",
+			},
+			{
+				src: "cover-example-3.png",
+				type: "some style",
+				url: "",
+			},
+			{
+				src: "cover-example-3.png",
+				type: "some style",
+				url: "",
+			},
+		];
+		const activeStyleIndex = ref<number>(0);
+
 		const prompt = ref("");
 		return {
 			prompt,
+			activeStyleIndex,
+			styles,
 			generateImage,
 			generatedImages,
 			isGenerating,

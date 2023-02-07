@@ -5,30 +5,7 @@
 		<section class="pt-2xl mb-4xl">
 			<div class="flex justify-center">
 				<div class="max-w-[120rem] w-full">
-					<OrganismGenerator>
-						<div class="flex items-center flex-col">
-							<div class="flex flex-col items-center">
-								<SvgArrowUp class="text-yellow-energy-yellow w-[10rem] mb-sm" />
-								<h2 class="text-white italic text-md font-light mb-md">
-									Write what you want on your album cover <br />
-									and click generate
-								</h2>
-								<div>
-									<p
-										v-for="text in [
-											`Use words like 'painting' or 'picasso', to generate cover in a specific style`,
-											`Add objects like 'Skull' or 'bird'`,
-											`The generated images are unique and you can use them as you like`,
-										]"
-										:key="text"
-										class="text-blue-cornflower italic text-sm"
-									>
-										* {{ text }}
-									</p>
-								</div>
-							</div>
-						</div>
-					</OrganismGenerator>
+					<OrganismGenerator> </OrganismGenerator>
 				</div>
 			</div>
 		</section>
