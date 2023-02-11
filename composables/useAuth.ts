@@ -3,7 +3,7 @@ import { useStorage } from "@vueuse/core";
 export const useAuth = () => {
 	// Composition API
 	const auth0 = process.client ? useAuth0() : undefined;
-	const { generatedImages } = useGeneratedImages();
+	const { generatedImage } = useGeneratedImage();
 
 	const login = () => {
 		auth0?.checkSession();
@@ -18,7 +18,7 @@ export const useAuth = () => {
 
 	const logout = () => {
 		navigateTo("/");
-		generatedImages.value = [];
+		generatedImage.value = null;
 		auth0?.logout();
 	};
 

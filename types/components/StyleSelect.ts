@@ -1,5 +1,5 @@
 export interface StyleImage {
-	src: string;
-	url: string;
-	type: string;
+	id: string;
+	name: string;
+	img: string;
 }

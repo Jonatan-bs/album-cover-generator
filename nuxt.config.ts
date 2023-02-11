@@ -8,10 +8,10 @@ export default defineNuxtConfig({
 		transpile: ["gsap"],
 	},
 	runtimeConfig: {
-		SD_API: process.env.SD_API,
 		AUTH_CLIENT_SECRET: process.env.AUTH_CLIENT_SECRET,
 
 		public: {
+			SD_API: process.env.SD_API,
 			ROBOTS: process.env.ROBOTS,
 			BASE_URL: process.env.BASE_URL,
 			CLOUDINARY_WEBSITE: process.env.CLOUDINARY_WEBSITE,

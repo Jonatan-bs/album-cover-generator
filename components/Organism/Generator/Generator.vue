@@ -1,30 +1,41 @@
 <script src="./Generator.ts" lang="ts"></script>
 <template>
 	<div class="w-full">
-		<form class="flex mb-md" @submit.prevent="generateImage">
+		<!-- <form @submit.prevent="generateImage"> -->
+		<AtomTextHeading tag="h2" class="mb-xs">Write what you want on your cover</AtomTextHeading>
+		<div class="flex mb-lg">
 			<input
 				v-model="prompt"
 				type="text"
-				class="rounded-l-sm w-full p-3xs text-base"
-				placeholder="Example: Death Valley art"
+				class="rounded-sm w-full p-3xs text-base"
+				placeholder="Example: Death Valley"
 			/>
-			<button
-				class="bg-yellow-energy-yellow text-base text-white rounded-r-sm px-lg py-2xs min-w-[30rem] hover:bg-yellow-brick-road"
-			>
-				Generate
-			</button>
-		</form>
+		</div>
+		<AtomTextHeading tag="h2" class="">Pick what style you want</AtomTextHeading>
+		<p class="text-white text-sm italic mb-xs">
+			Selected style:
+			<span class="font-bold text-yellow-energy-yellow">{{ activeStyle.name }}</span>
+		</p>
+
 		<OrganismStyleSelect
+			class="mb-lg"
 			:styles="styles"
 			:active-index="activeStyleIndex"
 			@select="activeStyleIndex = $event"
 		/>
+		<div class="flex justify-center">
+			<button
+				class="bg-yellow-energy-yellow text-base text-white rounded-sm px-lg py-2xs min-w-[30rem] hover:bg-yellow-brick-road"
+				@click="generateImage"
+			>
+				Generate
+			</button>
+		</div>
+		<!-- </form> -->
 		<ClientOnly>
 			<p
-				v-if="
-					!isAuthenticated && !authIsLoading && (generatedImages.length || isGenerating)
-				"
-				class="mt-md text-white text-base text-center"
+				v-if="!isAuthenticated && !authIsLoading && (generatedImage || isGenerating)"
+				class="mt-lg text-white text-base text-center"
 			>
 				You need to
 				<button
@@ -36,39 +47,54 @@
 				to save images and to generate in high resolution
 			</p>
 		</ClientOnly>
-		<ClientOnly v-if="generatedImages.length || isGenerating">
-			<div class="bg-blue-whale py-sm px-lg flex justify-center mt-md">
+		<ClientOnly>
+			<div
+				v-if="generatedImage || isGenerating"
+				class="bg-blue-whale py-sm px-lg flex items-center mt-md flex-col"
+			>
 				<div v-if="isGenerating">
 					<p class="text-white text-md text-center">Generating cover</p>
 					<p class="text-white text-sm text-center">Wait a couple of minutes</p>
 					<SvgLoader />
 				</div>
-				<div v-else class="aspect-1 w-full bg-blue-thoughts max-w-[90rem]">
-					<div v-if="generatedImages.length" class="flex flex-wrap">
-						<div
-							v-for="(image, n) in generatedImages"
-							:key="image"
-							class="w-1/2 relative"
-						>
-							<button
-								v-if="isAuthenticated"
-								class="bg-white border border-blue-cornflower rounded-sm px-4xs text-base absolute top-4xs right-4xs z-10 hover:border-white hover:bg-blue-light-house hover:text-white"
-							>
-								Save Image
-							</button>
+				<div v-else class="aspect-1 w-full bg-blue-thoughts max-w-[65rem] mb-sm">
+					<div v-if="generatedImage" class="flex flex-wrap">
+						<div class="relative w-full">
 							<nuxt-img
 								provider=""
-								:src="image"
-								:alt="`AI generated album cover ${n} of ${generatedImages.length}`"
+								:src="generatedImage"
+								:alt="`AI generated album cover`"
 								class="aspect-1 w-full bg-blue-galaxy"
 							>
 							</nuxt-img>
 						</div>
 					</div>
 				</div>
+				<div class="flex flex-col items-center" v-if="!isGenerating">
+					<div class="flex gap-sm">
+						<button
+							class="border border-white text-base text-white rounded-sm px-lg py-4xs min-w-[20rem] hover:bg-blue-light-house mb-sm"
+						>
+							Save Cover
+						</button>
+						<button
+							class="border border-white text-base text-white rounded-sm px-lg py-4xs min-w-[20rem] hover:bg-blue-light-house mb-sm"
+							@click="downloadImage"
+						>
+							Download
+						</button>
+					</div>
+					<button
+						v-if="!isInhanced"
+						class="border border-white text-base text-white rounded-sm px-lg py-4xs min-w-[20rem] hover:bg-blue-light-house"
+						@click="enhanceImage"
+					>
+						Generate in high quality
+					</button>
+				</div>
 			</div>
 		</ClientOnly>
-		<div v-else>
+		<!-- <div v-else>
 			<div class="flex items-center flex-col mt-md">
 				<div class="flex flex-col items-center">
 					<SvgArrowUp class="text-yellow-energy-yellow w-[10rem] mb-sm" />
@@ -89,6 +115,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </template>
