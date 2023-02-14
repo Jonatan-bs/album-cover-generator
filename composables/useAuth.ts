@@ -1,5 +1,4 @@
 import { useAuth0 } from "@auth0/auth0-vue";
-import { useStorage } from "@vueuse/core";
 export const useAuth = () => {
 	// Composition API
 	const auth0 = process.client ? useAuth0() : undefined;

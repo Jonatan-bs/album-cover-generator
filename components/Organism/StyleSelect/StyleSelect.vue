@@ -1,6 +1,6 @@
 <script src="./StyleSelect.ts" lang="ts"></script>
 <template>
-	<div class="grid grid-cols-10 gap-xs">
+	<div class="grid grid-cols-5 md:grid-cols-10 gap-xs">
 		<button
 			v-for="(style, n) in styles"
 			:key="n"

@@ -12,7 +12,7 @@
 			/>
 		</div>
 		<AtomTextHeading tag="h2" class="">Pick what style you want</AtomTextHeading>
-		<p class="text-white text-sm italic mb-xs">
+		<p class="text-white text-xs md:text-sm italic mb-xs">
 			Selected style:
 			<span class="font-bold text-yellow-energy-yellow">{{ activeStyle.name }}</span>
 		</p>
@@ -50,7 +50,7 @@
 		<ClientOnly>
 			<div
 				v-if="generatedImage || isGenerating"
-				class="bg-blue-whale py-sm px-lg flex items-center mt-md flex-col"
+				class="bg-blue-whale py-sm px-xs md:px-lg flex items-center mt-md flex-col"
 			>
 				<div v-if="isGenerating">
 					<p class="text-white text-md text-center">Generating cover</p>
@@ -71,14 +71,14 @@
 					</div>
 				</div>
 				<div class="flex flex-col items-center" v-if="!isGenerating">
-					<div class="flex gap-sm">
+					<div class="flex gap-sm flex-col md:flex-row mb-sm md:mb-[0]">
 						<button
-							class="border border-white text-base text-white rounded-sm px-lg py-4xs min-w-[20rem] hover:bg-blue-light-house mb-sm"
+							class="border border-white text-base text-white rounded-sm px-lg py-4xs min-w-[20rem] hover:bg-blue-light-house md:mb-sm"
 						>
 							Save Cover
 						</button>
 						<button
-							class="border border-white text-base text-white rounded-sm px-lg py-4xs min-w-[20rem] hover:bg-blue-light-house mb-sm"
+							class="border border-white text-base text-white rounded-sm px-lg py-4xs min-w-[20rem] hover:bg-blue-light-house md:mb-sm"
 							@click="downloadImage"
 						>
 							Download
