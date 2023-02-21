@@ -15,6 +15,10 @@
 			</NuxtLink>
 		</div>
 		<section class="pt-2xl mb-4xl" v-if="isAuthenticated">
+			<p class="text-white text-md text-center mb-lg font-light">
+				Album covers left: {{ user?.credits }}
+			</p>
+
 			<div>
 				<div class="w-full">
 					<OrganismGenerator> </OrganismGenerator>
@@ -47,13 +51,18 @@
 		</section>
 		<section class="mb-4xl" v-if="isAuthenticated">
 			<AtomTextHeading tag="h2">Saved Covers</AtomTextHeading>
-			<p class="text-white text-xs md:text-sm italic">You have no saved covers</p>
-			<div class="main-grid mt-xs">
-				<!-- <div
-					v-for="i in 3"
-					:key="i"
+			<p class="text-white text-xs md:text-sm italic" v-if="!savedImages.length">
+				You have no saved covers
+			</p>
+			<div class="main-grid mt-xs" v-if="savedImages.length">
+				<AtomCoverThumb
+					v-for="image in savedImages"
+					:key="image.id"
+					:src="image.image"
+					alt="Saved cover"
+					provider=""
 					class="col-span-12 md:col-span-4 aspect-1 w-full bg-blue-galaxy"
-				/> -->
+				/>
 			</div>
 		</section>
 		<section class="mb-4xl" v-else>

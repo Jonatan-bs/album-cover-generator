@@ -4,12 +4,58 @@ import { StyleImage } from "~~/types/components/StyleSelect";
 export default defineComponent({
 	name: "Generator",
 	setup() {
-		const { isAuthenticated, login, authIsLoading } = useAuth();
+		const { isAuthenticated, login, user, getUserImages } = useAuth();
 		const { SD_GenerateImage, SD_EnhanceImage } = useStabelDiffusion();
 		const { error, success } = useToast();
-		const { generatedImage, isInhanced, clearImage, setGeneratedImage, setOptimizedImage } =
-			useGeneratedImage();
+		const {
+			generatedImage,
+			isSaved,
+			isInhanced,
+			clearImage,
+			setGeneratedImage,
+			setOptimizedImage,
+		} = useGeneratedImage();
+		onMounted(() => {
+			setTimeout(() => {
+				useCredit();
+			}, 1000);
+		});
+		const client = useSupabaseClient();
+		const saveImage = async () => {
+			if (!generatedImage.value || !user) return;
+			const { data } = await client
+				.from("saved_image")
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+				//@ts-ignore
+				.insert<{ image: string; user_id: string }>({
+					image: generatedImage.value,
+					user_id: user.id,
+				});
+			getUserImages();
 
+			// images.value.push({});
+			isSaved.value = true;
+			console.log(data);
+		};
+		const useCredit = async () => {
+			if (!user?.id) return;
+			const { data } = await client
+				.from("user")
+				.select("credits")
+				.eq("user_id", user.id)
+				.limit(1)
+				.single();
+			if (typeof data?.credits === "number") {
+				const res = await client
+					.from("user")
+					// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+					//@ts-ignore
+					.update({ credits: 8 })
+					.eq("user_id", user.id);
+				console.log(res);
+			}
+		};
+		// const deleteImage = async () => {};
 		const isGenerating = ref(false);
 		const generateImage = async () => {
 			if (isGenerating.value) return;
@@ -17,6 +63,7 @@ export default defineComponent({
 			isGenerating.value = true;
 			try {
 				const response = await SD_GenerateImage(prompt.value, activeStyle.value.id);
+				await useCredit();
 				setGeneratedImage(response.output_url);
 			} catch (err) {
 				error("Something went wrong, try again later");
@@ -141,6 +188,7 @@ export default defineComponent({
 
 		const prompt = ref("");
 		return {
+			saveImage,
 			downloadImage,
 			isInhanced,
 			prompt,
@@ -152,8 +200,8 @@ export default defineComponent({
 			isGenerating,
 			isAuthenticated,
 			login,
-			authIsLoading,
 			enhanceImage,
+			isSaved,
 		};
 	},
 });

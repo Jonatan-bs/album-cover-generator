@@ -21,7 +21,13 @@ export default defineNuxtConfig({
 		},
 	},
 	css: ["~/assets/styles/main.scss"],
-	modules: ["@nuxtjs/tailwindcss", "@nuxt/image-edge", "~/modules/robots", "~/modules/router"],
+	modules: [
+		"@nuxtjs/tailwindcss",
+		"@nuxt/image-edge",
+		"~/modules/robots",
+		"~/modules/router",
+		"@nuxtjs/supabase",
+	],
 	components: [
 		{ path: "~/components", extensions: ["vue"] },
 		{ path: "~/assets/svg", extensions: ["vue"], prefix: "svg" },

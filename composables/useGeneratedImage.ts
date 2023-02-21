@@ -1,7 +1,8 @@
 import { useStorage } from "@vueuse/core";
 export const useGeneratedImage = () => {
-	const generatedImage = useStorage<string | undefined>("generated-image", null);
-	const isInhanced = useStorage<boolean>("generated-image-is-inhanced", false);
+	const generatedImage = ref<string | null>(null);
+	const isInhanced = ref<boolean>(false);
+	const isSaved = ref<boolean>(false);
 
 	const setGeneratedImage = (src: string) => {
 		generatedImage.value = src;
@@ -15,5 +16,12 @@ export const useGeneratedImage = () => {
 		generatedImage.value = null;
 		isInhanced.value = false;
 	};
-	return { generatedImage, isInhanced, setGeneratedImage, setOptimizedImage, clearImage };
+	return {
+		generatedImage,
+		isInhanced,
+		setGeneratedImage,
+		setOptimizedImage,
+		clearImage,
+		isSaved,
+	};
 };

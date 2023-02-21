@@ -34,7 +34,7 @@
 		<!-- </form> -->
 		<ClientOnly>
 			<p
-				v-if="!isAuthenticated && !authIsLoading && (generatedImage || isGenerating)"
+				v-if="!isAuthenticated && (generatedImage || isGenerating)"
 				class="mt-lg text-white text-base text-center"
 			>
 				You need to
@@ -73,7 +73,9 @@
 				<div class="flex flex-col items-center" v-if="!isGenerating">
 					<div class="flex gap-sm flex-col md:flex-row mb-sm md:mb-[0]">
 						<button
+							v-if="!isSaved"
 							class="border border-white text-base text-white rounded-sm px-lg py-4xs min-w-[20rem] hover:bg-blue-light-house md:mb-sm"
+							@click="saveImage"
 						>
 							Save Cover
 						</button>
